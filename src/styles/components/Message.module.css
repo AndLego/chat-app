@@ -1,0 +1,27 @@
+.message {
+  display: grid;
+}
+
+.sender {
+  list-style: none;
+  background-color: var(--light);
+  color: var(--dark-blue);
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-align: end;
+  width: 60%;
+  overflow-wrap: anywhere;
+  justify-self: right;
+  margin-top: 12px;
+}
+
+.receiver {
+  list-style: none;
+  background-color: var(--yellow);
+  color: var(--dark-blue);
+  padding: 8px 16px;
+  border-radius: 30px;
+  width: 60%;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+}

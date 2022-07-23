@@ -1,0 +1,24 @@
+:root {
+  --orange: #fb8500;
+  --yellow: #ffb703;
+  --dark-blue: #023047;
+  --mid-blue: #023e8a;
+  --blue: #219ebc;
+  --light-blue: #8ecae6;
+  --light: #cceaf6;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.8rem;
+}
