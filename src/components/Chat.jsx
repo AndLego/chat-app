@@ -1,36 +1,18 @@
 import React from "react";
-import socket from "./Socket";
 import { useParams, Link } from "react-router-dom";
-import { MainContext } from "../context/MainContext";
 import { Message } from "./Message";
 import { IoSendSharp } from "react-icons/io5";
+import {useChat2} from "../hooks/useChat2"
 
 import styles from "../styles/components/Chat.module.css";
 
 const Chat = () => {
-  const { user } = React.useContext(MainContext);
-  
-  const { id } = useParams();
-  
+
   const [message, setMessage] = React.useState("");
-  const [messages, setMessages] = React.useState([]);
+  const { id } = useParams();
 
-  const time = `${new Date().getHours()}:${("0" + new Date().getMinutes()).slice(-2)}`;
-
-  console.log("en chat", messages);
-
-  React.useEffect(() => {
-    socket.emit("connected", user);
-  }, [user]);
-
-  React.useEffect(() => {
-    socket.on("messages", (message) => {
-      setMessages([...messages, message]);
-    });
-    return () => {
-      socket.off();
-    };
-  }, [messages]);
+  const {messages, sendMessage} = useChat2(id)
+  console.log(id)
 
   const divRef = React.useRef(null);
   React.useEffect(() => {
@@ -39,7 +21,7 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit("message", user, message, time);
+    sendMessage(message)
     setMessage("");
   };
 
@@ -58,11 +40,11 @@ const Chat = () => {
           <Message
             user="Admin"
             message={"Send your fist message 💬 Chat start here 👇"}
-            time={time}
+            time="xo:xo"
             sender={true}
           />
         ) : (
-          messages.map((e, i) => <Message key={i} time={time} {...e} />)
+          messages.map((e, i) => <Message key={i} {...e} />)
         )}
         <div ref={divRef}></div>
       </ol>
@@ -74,7 +56,7 @@ const Chat = () => {
           autoComplete="off"
           onChange={handleChange}
         />
-        <button type="submit">
+        <button type="submit" disabled={message.length < 1}>
           <IoSendSharp />
         </button>
       </form>

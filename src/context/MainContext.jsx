@@ -4,7 +4,7 @@ const MainContext = React.createContext();
 
 const MainProvider = (props) => {
   const [user, setUser] = React.useState("");
-  const [room, setRoom] = React.useState("cool");
+  const [room, setRoom] = React.useState("choose");
 
   return (
     <MainContext.Provider
