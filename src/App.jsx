@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {MainProvider} from "./context/MainContext"
 
 import { Home } from "./components/Home";
@@ -14,6 +14,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/chat/:id" element={<Chat />} />
+          <Route exact path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </MainProvider>

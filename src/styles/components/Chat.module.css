@@ -5,11 +5,23 @@
   color: var(--light);
 }
 
-.chat h4 {
+.chatHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--blue);
+  padding: 0 4px 12px;
+}
+
+.chatHeader a{
+  color: var(--yellow);
+  font-size: 3rem;
+}
+
+.chatHeader h4{
   text-align: center;
   font-size: 2rem;
-  padding: 0 0 28px;
-  border-bottom: 1px solid var(--blue);
+  color: var(--light);
 }
 
 .chat ol {
@@ -17,6 +29,7 @@
   margin-bottom: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
+  padding: 0 8px;
 }
 
 .chat form{

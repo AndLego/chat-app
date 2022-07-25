@@ -1,40 +1,37 @@
 import React from "react";
-import socketIOClient from "socket.io-client";
+import { MainContext } from "../context/MainContext";
 
-const NEW_CHAT_MESSAGE = "newMessage";
-const SOCKET_SERVER = "http://localhost:8085";
-
-const useChat = (chatId) => {
-  const [msgs, setMsgs] = React.useState([]);
-  const socketRef = React.useRef();
+const useChat = () => {
+  const [messages, setMessages] = React.useState([]);
+  const { user, room, socket } = React.useContext(MainContext);
 
   React.useEffect(() => {
-    socketRef.current = socketIOClient(SOCKET_SERVER, {
-      query: { chatId },
-    });
+    socket.emit("connected", user, room)
+  }, [user]);
 
-    socketRef.current.on(NEW_CHAT_MESSAGE, (message) => {
-      const incomingMessage = {
+  React.useEffect(() => {
+    socket.on("messages", (message) => {
+      const checkMessage = {
         ...message,
-        sender: message.senderId === socketRef.current.id,
+        sender: message.senderId === socket.id,
       };
-      setMsgs((msgs) => [...msgs, incomingMessage]);
+      setMessages((msgs) => [...msgs, checkMessage]);
     });
+    return() => {socket.off()}
+  }, [messages])
 
-    return () => {
-      socketRef.current.disconnect(); //te desconecta del chat
-    };
-  }, [chatId]);
-
-  const sendMessage = (messageBody) => {
-    socketRef.current.emit(NEW_CHAT_MESSAGE, {
-      body: messageBody,
-      senderId: socketRef.current.id,
-      time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+  const sendMessage = (text) => {
+    socket.emit("message", {
+      user: user,
+      message: text,
+      senderId: socket.id,
+      time: `${new Date().getHours()}:${("0" + new Date().getMinutes()).slice(
+        -2
+      )}`,
+      room
     });
   };
-
-  return { msgs, sendMessage };
+  return { messages, sendMessage };
 };
 
 export { useChat };

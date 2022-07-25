@@ -2,15 +2,22 @@ import React from "react";
 
 import styles from "../styles/components/Message.module.css";
 
-const Message = ({user, message, time, sender = false}) => {
-
+const Message = ({ user, message, time, sender = false }) => {
   return (
     <li className={styles.message}>
-      <div className={sender ? styles.sender : styles.receiver}>
-        <p>{user}</p>
-        <p>{message}</p>
-        <span>{time}</span>
-      </div>
+      {console.log("fuera admin", user)}
+      {user === "admin" ? (
+        <div className={styles.admin}>
+          {console.log("div admin", user)}
+          <p>{message}</p>
+        </div>
+      ) : (
+        <div className={sender ? styles.sender : styles.receiver}>
+          {!sender && <h5>{user}</h5>}
+          <p>{message}</p>
+          <span>{time}</span>
+        </div>
+      )}
     </li>
   );
 };

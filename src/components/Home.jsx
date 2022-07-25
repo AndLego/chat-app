@@ -5,11 +5,17 @@ import { MainContext } from "../context/MainContext";
 import styles from "../styles/components/Home.module.css";
 
 const Home = () => {
-  const { user, setUser, room, setRoom } = React.useContext(MainContext);
+  const { user, setUser, room, setRoom, socket } = React.useContext(MainContext);
 
   const handleRoom = (e) => {
     setRoom(e.target.value);
   };
+
+  const joinRoom = () => {
+    if(room !== "choose"){
+      socket.emit("join_room", room, user)
+    }
+  }
 
   const handleChange = (e) => {
     setUser(e.target.value);
@@ -19,8 +25,9 @@ const Home = () => {
     <main className={styles.home}>
       <h1>Chat-App</h1>
       <form>
-        <div className="user">
-          <label htmlFor="username">username</label>
+        <div className={styles.user}>
+          <label htmlFor="username">Username</label>
+          {(user.length < 3 && user.length > 0 ) && <span>minimum 3 characters</span>}
           <input
             type="text"
             value={user}
@@ -29,9 +36,10 @@ const Home = () => {
             autoComplete="off"
             placeholder="Enter username..."
             onChange={handleChange}
+            maxLength="8"
           />
         </div>
-        <div className="room">
+        <div className={styles.room}>
           <label htmlFor="room">Room</label>
           <select name="room" id="room" onChange={handleRoom}>
             <option value="choose">Pick a room</option>
@@ -41,7 +49,7 @@ const Home = () => {
           </select>
         </div>
         <Link to={`/chat/${room}`}>
-          <button disabled={user.length < 3 || room === "choose"}>
+          <button disabled={user.length < 3 || room === "choose"} onClick={joinRoom}>
             Get Started
           </button>
         </Link>
