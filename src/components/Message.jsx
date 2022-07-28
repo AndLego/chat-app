@@ -5,10 +5,8 @@ import styles from "../styles/components/Message.module.css";
 const Message = ({ user, message, time, sender = false }) => {
   return (
     <li className={styles.message}>
-      {console.log("fuera admin", user)}
       {user === "admin" ? (
         <div className={styles.admin}>
-          {console.log("div admin", user)}
           <p>{message}</p>
         </div>
       ) : (
