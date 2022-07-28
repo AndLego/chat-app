@@ -7,7 +7,7 @@ const MainProvider = (props) => {
   const [user, setUser] = React.useState("");
   const [room, setRoom] = React.useState("choose");
 
-  let socket = io("http://localhost:3000");
+  let socket = io("https://andlego-chat-app-api.herokuapp.com/");
   
   return (
     <MainContext.Provider
