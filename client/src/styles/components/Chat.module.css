@@ -1,0 +1,70 @@
+.chat {
+  background-color: var(--dark-blue);
+  height: 100vh;
+  padding: 28px;
+  color: var(--light);
+}
+
+.chatHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--blue);
+  padding: 0 4px 12px;
+}
+
+.chatHeader a{
+  color: var(--yellow);
+  font-size: 3rem;
+}
+
+.chatHeader h4{
+  text-align: center;
+  font-size: 2rem;
+  color: var(--light);
+}
+
+.chat ol {
+  height: 76vh;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 8px;
+}
+
+.chat form{
+    display: flex;
+}
+
+.chat input {
+  width: 80%;
+  height: 5vh;
+  border: 2px solid var(--blue);
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+  border-right: none;
+  padding-left: 24px;
+  font-size: 1.6rem;
+  background: transparent;
+  color: var(--light);
+  outline: none;
+}
+
+.chat input::placeholder {
+  color: var(--light);
+}
+
+.chat button{
+    height: 5vh;
+    width: 12%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid var(--blue);
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-left: none;
+    color: var(--light);
+}

@@ -1,0 +1,52 @@
+.message {
+  display: grid;
+}
+
+.sender {
+  list-style: none;
+  background-color: var(--blue);
+  color: var(--dark-blue);
+  padding: 4px 8px;
+  border-radius: 8px;
+  text-align: end;
+  max-width: 60%;
+  overflow-wrap: anywhere;
+  justify-self: right;
+  margin-top: 12px;
+}
+
+.receiver {
+  list-style: none;
+  background-color: burlywood;
+  color: var(--dark-blue);
+  padding: 4px 8px;
+  border-radius: 8px;
+  max-width: 60%;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.admin {
+  list-style: none;
+  color: var(--yellow);
+  padding: 4px 8px;
+  margin: 12px auto;
+}
+
+.message h5 {
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+}
+
+.message p {
+  font-size: 1.6rem;
+  align-self: self-start;
+}
+
+.message span {
+  font-size: 1.2rem;
+}
