@@ -1,8 +1,6 @@
 import React from "react";
 import io from "socket.io-client";
 
-
-
 const MainContext = React.createContext();
 
 const MainProvider = (props) => {
@@ -10,8 +8,7 @@ const MainProvider = (props) => {
   const [room, setRoom] = React.useState("choose");
 
   let socket = io("http://localhost:3000");
-
-
+  
   return (
     <MainContext.Provider
       value={{

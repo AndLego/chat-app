@@ -11,7 +11,7 @@ import styles from "../styles/components/Chat.module.css";
 const Chat = () => {
   const [message, setMessage] = React.useState("");
   const { id } = useParams();
-  const { user } = React.useContext(MainContext);
+  const { user, socket } = React.useContext(MainContext);
 
   const { messages, sendMessage } = useChat();
 
@@ -33,6 +33,7 @@ const Chat = () => {
   };
 
   const handleEvent = () => {
+    socket.emit("pre-disconnect", user)
     socket.disconnect()
   }
 
