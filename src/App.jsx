@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {MainProvider} from "./context/MainContext"
 
-import { Home } from "./components/Home";
-import { Chat } from "./components/Chat";
+import { Home } from "./components/Home/Home";
+import { Chat } from "./components/Chat/Chat";
 
-import "./styles/pages/App.css";
+import "./App.css";
 
 const App = () => {
   return (

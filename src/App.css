@@ -3,6 +3,7 @@
   --yellow: #ffb703;
   --dark-blue: #001220;
   --mid-blue: #023e8a;
+  ----mid-blue-lighter: #02234f;
   --blue: #219ebc;
   --light-blue: #8ecae6;
   --light: #cceaf6;
@@ -21,4 +22,5 @@ html {
 body {
   font-family: 'Ubuntu', sans-serif;
   font-size: 1.8rem;
+  background-color: var(--dark-blue);
 }

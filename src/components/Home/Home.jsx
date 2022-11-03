@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MainContext } from "../context/MainContext";
+import { MainContext } from "../../context/MainContext";
 
-import styles from "../styles/components/Home.module.css";
+import styles from "./Home.module.css";
 
 const Home = () => {
   const { user, setUser, room, setRoom, socket } = React.useContext(MainContext);

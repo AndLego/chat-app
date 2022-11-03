@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../styles/components/Message.module.css";
+import styles from "./Message.module.css";
 
 const Message = ({ user, message, time, sender = false }) => {
   return (

@@ -1,16 +1,18 @@
 import React from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
-import { Message } from "./Message";
-import { useChat } from "../hooks/useChat";
-import { MainContext } from "../context/MainContext";
+import { Navigate } from "react-router-dom";
+
+import { Message } from "../Messages/Message";
+import { InfoPanel } from "../InfoPanel/InfoPanel";
+
+import { useChat } from "../../hooks/useChat";
+import { MainContext } from "../../context/MainContext";
 
 import { IoSendSharp } from "react-icons/io5";
-import { BsBackspace } from "react-icons/bs";
-import styles from "../styles/components/Chat.module.css";
+import styles from "./Chat.module.css";
+import Header from "../Header/Header";
 
 const Chat = () => {
   const [message, setMessage] = React.useState("");
-  const { id } = useParams();
   const { user, socket } = React.useContext(MainContext);
 
   const { messages, sendMessage } = useChat();
@@ -32,23 +34,14 @@ const Chat = () => {
     setMessage(e.target.value);
   };
 
-  const handleEvent = () => {
-    socket.emit("pre-disconnect", user)
-    socket.disconnect()
-  }
-
   return (
     <>
       {user.length == 0 ? (
         <Navigate to="/" />
       ) : (
         <div className={styles.chat}>
-          <div className={styles.chatHeader}>
-            <Link to={"/"} onClick={handleEvent}>
-              <BsBackspace />
-            </Link>
-            <h4>Currently on room "{id}"</h4>
-          </div>
+          <Header socket={socket} />
+          <InfoPanel />
           <ol>
             {messages.length === 0 ? (
               <Message

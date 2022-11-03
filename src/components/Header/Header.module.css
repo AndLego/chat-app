@@ -1,0 +1,36 @@
+.chatHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--mid-blue);
+  padding: 12px 24px 12px 12px;
+  border-radius: 4px 4px 0 0;
+  grid-area: header;
+}
+
+.chatHeader a {
+  color: var(--mid-blue);
+  background-color: var(--light-blue);
+  font-size: 1.6rem;
+  text-decoration: none;
+  border: 1px solid;
+  padding: 4px 12px;
+  border-radius: 2px;
+}
+
+.chatHeader a:hover {
+  color: var(--yellow);
+  background-color: var(--dark-blue);
+}
+
+.chatHeader h2 {
+  text-align: center;
+  color: var(--light);
+}
+
+.chatHeader h2 svg {
+  margin: 0 12px 0 4px;
+  vertical-align: middle;
+  color: var(--yellow);
+  font-size: 4rem;
+}
