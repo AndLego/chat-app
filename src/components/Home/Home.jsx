@@ -17,6 +17,7 @@ const Home = () => {
     if (room !== "choose") {
       socket.emit("join_room", room, user);
     }
+    console.log(room);
   };
 
   const handleChange = (e) => {
@@ -49,7 +50,6 @@ const Home = () => {
         <div className={styles.room}>
           <label htmlFor="room">Room</label>
           <select name="room" id="room" onChange={handleRoom}>
-            <option value="choose">Pick a room</option>
             <option value="JavaScript">JavaScript</option>
             <option value="Python">Python</option>
             <option value="PHP">PHP</option>
@@ -59,7 +59,7 @@ const Home = () => {
         </div>
         <Link to={`/chat/${room}`}>
           <button
-            disabled={user.length < 3 || room === "choose" || user === "admin"}
+            disabled={user.length < 3 || user === "admin"}
             onClick={joinRoom}
           >
             Get Started

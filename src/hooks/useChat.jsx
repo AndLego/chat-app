@@ -5,10 +5,6 @@ const useChat = () => {
   const [messages, setMessages] = React.useState([]);
   const { user, room, socket, panel, setPanel } = React.useContext(MainContext);
 
-  // React.useEffect(() => {
-  //   socket.emit("connecteds", user, room)
-  // }, [user]);
-
   //MESSAGES HANDLER
   React.useEffect(() => {
     //Receives message from server
