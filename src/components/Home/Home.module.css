@@ -94,6 +94,10 @@
   outline: none;
 }
 
+.home option{
+  background: var(--dark-blue);
+}
+
 .home button {
   padding: 16px;
   font-size: 2rem;
