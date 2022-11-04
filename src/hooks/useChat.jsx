@@ -5,9 +5,9 @@ const useChat = () => {
   const [messages, setMessages] = React.useState([]);
   const { user, room, socket } = React.useContext(MainContext);
 
-  React.useEffect(() => {
-    socket.emit("connected", user, room)
-  }, [user]);
+  // React.useEffect(() => {
+  //   socket.emit("connecteds", user, room)
+  // }, [user]);
 
   React.useEffect(() => {
     socket.on("messages", (message) => {

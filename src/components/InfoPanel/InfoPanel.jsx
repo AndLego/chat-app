@@ -26,9 +26,11 @@ const InfoPanel = () => {
     <>
       <div
         className={
-          !active
-            ? `${styles.InfoPanel} ${styles.gone} `
-            : `${styles.InfoPanel} ${styles.pop}`
+          size.width <= 800
+            ? !active
+              ? `${styles.InfoPanel} ${styles.gone} `
+              : `${styles.InfoPanel} ${styles.pop}`
+            : styles.InfoPanel
         }
       >
         {size.width <= 800 && (
