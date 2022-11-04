@@ -1,8 +1,8 @@
 .chat {
-  background-color: var(--dark-blue);
   height: 100vh;
-  max-width: 1180px;
+  max-width: 900px;
   padding: 20px;
+  margin: 0 auto;
   color: var(--light);
   display: grid;
   grid-template-columns: 20% 80%;

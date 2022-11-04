@@ -4,8 +4,10 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { ImHappy } from "react-icons/im";
 
-const Header = ({socket}) => {
+const Header = ({ socket }) => {
+  //Leave chatroom
   const handleEvent = () => {
+    socket.leave();
     socket.disconnect();
   };
 

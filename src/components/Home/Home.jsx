@@ -5,17 +5,19 @@ import { MainContext } from "../../context/MainContext";
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const { user, setUser, room, setRoom, socket } = React.useContext(MainContext);
+  const { user, setUser, room, setRoom, socket } =
+    React.useContext(MainContext);
 
   const handleRoom = (e) => {
     setRoom(e.target.value);
   };
 
+  //Join chatroom
   const joinRoom = () => {
-    if(room !== "choose"){
-      socket.emit("join_room", room, user)
+    if (room !== "choose") {
+      socket.emit("join_room", room, user);
     }
-  }
+  };
 
   const handleChange = (e) => {
     setUser(e.target.value);
@@ -27,7 +29,12 @@ const Home = () => {
       <form>
         <div className={styles.user}>
           <label htmlFor="username">Username</label>
-          {(user.length < 3 && user.length > 0 ) && <span>minimum 3 characters</span>}
+          {user.length < 3 && user.length > 0 && (
+            <span>minimum 3 characters</span>
+          )}
+          {user === "admin" && (
+            <span>cant use that username</span>
+          )}
           <input
             type="text"
             value={user}
@@ -43,13 +50,18 @@ const Home = () => {
           <label htmlFor="room">Room</label>
           <select name="room" id="room" onChange={handleRoom}>
             <option value="choose">Pick a room</option>
-            <option value="Cool">Cool</option>
-            <option value="NotCool">NotCool</option>
-            <option value="Hello?">Hello?</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="PHP">PHP</option>
+            <option value="Ruby">Ruby</option>
+            <option value="Java">Java</option>
           </select>
         </div>
         <Link to={`/chat/${room}`}>
-          <button disabled={user.length < 3 || room === "choose"} onClick={joinRoom}>
+          <button
+            disabled={user.length < 3 || room === "choose" || user === "admin"}
+            onClick={joinRoom}
+          >
             Get Started
           </button>
         </Link>

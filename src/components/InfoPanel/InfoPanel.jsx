@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./InfoPanel.module.css";
 
-import { useParams } from "react-router-dom";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 import { FaUsers } from "react-icons/fa";
@@ -11,16 +10,28 @@ import {
   IoIosArrowDropleftCircle,
 } from "react-icons/io";
 
-const InfoPanel = () => {
+const InfoPanel = ({ socket, panel }) => {
   const [active, setActive] = React.useState(false);
-
-  const { id } = useParams();
+  const [currentRoom, setCurrentRoom] = React.useState(null);
+  const [onlineUsers, setOnlineUsers] = React.useState(null);
 
   const size = useWindowWidth();
 
   const handleToggle = () => {
     !active ? setActive(true) : setActive(false);
   };
+
+  //Get room and users
+  React.useEffect(() => {
+    socket.on("roomUsers", ({ room, users }) => {
+      setCurrentRoom(room);
+      setOnlineUsers(users);
+    });
+  }, [panel]);
+
+  const listUsers = onlineUsers?.map((user, key) => (
+    <li key={key}>{user.username}</li>
+  ));
 
   return (
     <>
@@ -51,54 +62,13 @@ const InfoPanel = () => {
             {" "}
             <RiWechatFill /> Room Name:
           </h3>
-          <p>{id}</p>
+          <p>{currentRoom}</p>
         </article>
         <article>
           <h3>
             <FaUsers /> Users
           </h3>
-          <ul>
-            <li>1asdasdas</li>
-            <li>2asdasdasdsa</li>
-            <li>3asdasda</li>
-            <li>4ASDASDSA</li>
-            <li>5ASDASDA</li>
-            <li>ASASDASDASDASDASDASDASDASDASDASDASDSA6</li>
-            <li>ASDASDASDASDAS7</li>
-            <li>ASDASDASAS8</li>
-            <li>9</li>
-            <li>10ASDASDASDAS</li>
-            <li>1asdasdas</li>
-            <li>2asdasdasdsa</li>
-            <li>3asdasda</li>
-            <li>4ASDASDSA</li>
-            <li>5ASDASDA</li>
-            <li>ASASDASDASDASDASDASDASDASDASDASDASDSA6</li>
-            <li>ASDASDASDASDAS7</li>
-            <li>ASDASDASAS8</li>
-            <li>9</li>
-            <li>10ASDASDASDAS</li>
-            <li>1asdasdas</li>
-            <li>2asdasdasdsa</li>
-            <li>3asdasda</li>
-            <li>4ASDASDSA</li>
-            <li>5ASDASDA</li>
-            <li>ASASDASDASDASDASDASDASDASDASDASDASDSA6</li>
-            <li>ASDASDASDASDAS7</li>
-            <li>ASDASDASAS8</li>
-            <li>9</li>
-            <li>10ASDASDASDAS</li>
-            <li>1asdasdas</li>
-            <li>2asdasdasdsa</li>
-            <li>3asdasda</li>
-            <li>4ASDASDSA</li>
-            <li>5ASDASDA</li>
-            <li>ASASDASDASDASDASDASDASDASDASDASDASDSA6</li>
-            <li>ASDASDASDASDAS7</li>
-            <li>ASDASDASAS8</li>
-            <li>9</li>
-            <li>10ASDASDASDAS</li>
-          </ul>
+          <ul>{listUsers}</ul>
         </article>
       </div>
     </>

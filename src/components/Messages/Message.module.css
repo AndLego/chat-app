@@ -1,6 +1,6 @@
 .message {
   display: grid;
-  margin-left: 40px;
+  margin: 0 40px;
 }
 
 .sender {

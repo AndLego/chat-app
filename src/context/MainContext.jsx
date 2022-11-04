@@ -7,10 +7,11 @@ const MainProvider = (props) => {
   const [user, setUser] = React.useState("");
   const [room, setRoom] = React.useState("choose");
   const [socket, setSocket] = React.useState(null);
+  const [panel, setPanel] = React.useState(false);
 
   React.useEffect(() => {
-     const newSocket = io("https://andlego-chat-app.herokuapp.com/");
-    //const newSocket = io("localhost:3000");
+    const newSocket = io("https://andlego-chat-app.herokuapp.com/");
+    // const newSocket = io("localhost:3000");
     newSocket.on("connect", (socket) => {
       console.log("socket connected", socket);
     });
@@ -27,6 +28,8 @@ const MainProvider = (props) => {
         room,
         setRoom,
         socket,
+        panel,
+        setPanel,
       }}
     >
       {props.children}
